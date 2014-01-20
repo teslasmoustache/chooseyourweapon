@@ -52,7 +52,7 @@ NUMBER=$[ ( $RANDOM % 4 ) + 1 ]
 
 function D-6 {
 NUMBER=$[ ( $RANDOM % 6 ) + 1 ]
-echo " _______.    "
+echo " _______     "
 echo "| .   . |\   "
 echo "|   .   |.\  "
 echo "| .   . |.'| "
@@ -150,7 +150,9 @@ select weapon in \
 #Functions to perform based on user's selection
 #==============================================
 
-do case $weapon in
+do 
+clear
+case $weapon in
 	"D-4")
 	D-4;
 	;;

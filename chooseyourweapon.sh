@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# <Choose Your Weapon>
+# <Choose Your Weapon version 0.0.2>
 # Copyright (C) <2014> <Teslas Moustache>
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,169 +14,132 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>."
 
-#================
-#clear the screen
-#================
-clear
 
 #================
-#Greeting
+# Art
 #================
+
+declare -a weapons
+declare -A art
+
+function art_for {
+    local weapon="$*"
+
+    weapons+=("$weapon")
+    IFS='' read -r -d '' art["$weapon"]
+}
+
+art_for D-4 <<'EOF'
+         ^
+        /|\ 
+       /'|:\ 
+      /''|::\ 
+     /'''|:::\ 
+    /''''|::::\ 
+   /''''/,\::::\ 
+  /'''/,,,,,\:::\ 
+ /''/,,,,,,,,,\::\ 
+/'/,,,,,,,,,,,,,\:\ 
+/_________________\ 
+EOF
+
+art_for D-6 <<'EOF'
+ _______
+| .   . |\  
+|   .   |.\ 
+| .   . |.'|
+|_______|.'|
+ \ ' .   \'|
+  \____'__\|
+EOF
+
+art_for D-8 <<'EOF'
+EOF
+
+art_for D-10 <<'EOF'
+EOF
+
+art_for D-12 <<'EOF'
+EOF
+
+art_for D-20 <<'EOF'
+EOF
+
+art_for D-100 <<'EOF'
+EOF
+
+art_for coin toss <<'EOF'
+Feel like donating? 14ZcmYJCZKsUFDYfHdU7YEaAwkatLdBvVC
+
+                 ,.=ctE55ttt553tzs.,
+             ,,c5;z==!!::::  .::7:==it3>.,
+          ,xC;z!::::::    ::::::::::::!=c33x,
+        ,czz!:::::  ::;;..===:..:::   ::::!ct3.
+      ,C;/.:: :  ;=c!:::::::::::::::..      !tt3.
+     /z/.:   :;z!:::::J  :E3.  E:::::::..     !ct3.
+   ,E;F   ::;t::::::::J  :E3.  E::.     ::.     \ttL
+  ;E7.    :c::::F******   **.  *==c;..    ::     Jttk
+ .EJ.    ;::::::L                   '|:.   ::.    Jttl
+ [:.    :::::::::773.    JE773zs.     I:. ::::.    It3L
+;:[     L:::::::::::L    |t::!::J     |::::::::    :Et3
+[:L    !::::::::::::L    |t::;z2F    .Et:::.:::.  ::[13
+E:.    !::::::::::::L               =Et::::::::!  ::|13
+E:.    (::::::::::::L    .......       \:::::::!  ::|i3
+[:L    !::::      ::L    |3t::::!3.     ]::::::.  ::[13
+!:(     .:::::    ::L    |t::::::3L     |:::::; ::::EE3
+ E3.    :::::::::;z5.    Jz;;;z=F.     :E:::::.::::II3[
+ Jt1.    :::::::[                    ;z5::::;.::::;3t3
+  \z1.::::::::::l......   ..   ;.=ct5::::::/.::::;Et3L
+   \t3.:::::::::::::::J  :E3.  Et::::::::;!:::::;5E3L
+    'cz\.:::::::::::::J   E3.  E:::::::z!     ;Zz37'
+      \z3.       ::;:::::::::::::::;=       ./355F
+        \z3x.         ::~=======          ,c253F
+          'tz3=.                      ..c5t32^
+             '=zz3==...         ...=t3z13P^
+                 '*=zjzczIIII3zzztE3>*^'
+EOF
+
+#================
+# Logic
+#================
+
+function roll {
+NUMBER=$(( ( $RANDOM % $1 ) + 1 ))
+}
+
+#================
+# User Interface
+#================
+
+clear
 
 echo "A dice roller script for D-4, D-6, D-8, D-10, D-12, D-20, and D-100, as well as a coin tosser."
-echo "Choose your weapon."
+PS3="Choose your weapon: "
 
-#================
-#Functions
-#================
+select weapon in "${weapons[@]}"; do 
+    if [ -z "$weapon" ]; then
+        echo "Unknown weapon"
+        continue
+    fi
 
-function D-4 {
-NUMBER=$[ ( $RANDOM % 4 ) + 1 ]
-     echo "               ^"
-     echo "              /|\ "
-     echo "             /'|:\ "
-     echo "            /''|::\ "
-     echo "           /'''|:::\ "
-     echo "          /''''|::::\ "
-     echo "         /''''/,\::::\ "
-     echo "        /'''/,,,,,\:::\ "
-     echo "       /''/,,,,,,,,,\::\ "
-     echo "      /'/,,,,,,,,,,,,,\:\ "
-     echo "      /_________________\ "
-     
-     
-     echo " You have chosen D4. And you have rolled a.... "
-     echo $NUMBER
+    clear
 
-}
+    ART="${art[$weapon]}"
+    [ -n "$ART" ] && echo "$ART"
 
-function D-6 {
-NUMBER=$[ ( $RANDOM % 6 ) + 1 ]
-echo " _______     "
-echo "| .   . |\   "
-echo "|   .   |.\  "
-echo "| .   . |.'| "
-echo "|_______|.'| "
-echo " \ ' .   \'| "
-echo "  \____'__\| "
-echo " You have chosen D6. And you have rolled a.... "
-echo $NUMBER
-}
+    case "$weapon" in
+        D-*)
+            roll "${weapon:2}"
 
-function D-8 {
-NUMBER=$[ ( $RANDOM % 8 ) + 1 ]
-echo " You have chosen D8. And you have rolled a.... "
-echo $NUMBER
-}
+            echo "You have chosen $weapon. And you have rolled a...."
+            echo $NUMBER
+            ;;
+        "coin toss")
+            roll 2
 
-function D-10 {
-NUMBER=$[ ( $RANDOM % 10 ) + 1 ]
-echo " You have chosen D10. And you have rolled a.... "
-echo $NUMBER
-}
-
-function D-12 {
-NUMBER=$[ ( $RANDOM % 12 ) + 1 ]
-echo " You have chosen D12. And you have rolled a.... "
-echo $NUMBER
-}
-
-function D-20 {
-NUMBER=$[ ( $RANDOM % 20 ) + 1 ]
-echo " You have chosen D20. And you have rolled a.... "
-echo $NUMBER
-}
-
-function D-100 {
-NUMBER=$[ ( $RANDOM % 100 )  + 1 ]
-echo " You have chosen D100. And you have rolled a.... "
-echo $NUMBER
-}
-
-function coin-toss {
-NUMBER=$[ ( $RANDOM % 2 ) + 1 ]
-echo " Feel like donating? 14ZcmYJCZKsUFDYfHdU7YEaAwkatLdBvVC             "
-echo ""
-echo "                  ,.=ctE55ttt553tzs.,                               "
-echo "              ,,c5;z==!!::::  .::7:==it3>.,                         "
-echo "           ,xC;z!::::::    ::::::::::::!=c33x,                      "
-echo "         ,czz!:::::  ::;;..===:..:::   ::::!ct3.                    "
-echo "       ,C;/.:: :  ;=c!:::::::::::::::..      !tt3.                  "
-echo "      /z/.:   :;z!:::::J  :E3.  E:::::::..     !ct3.                "
-echo "    ,E;F   ::;t::::::::J  :E3.  E::.     ::.     \ttL               "
-echo "   ;E7.    :c::::F******   **.  *==c;..    ::     Jttk              "
-echo "  .EJ.    ;::::::L                   '|:.   ::.    Jttl             "
-echo "  [:.    :::::::::773.    JE773zs.     I:. ::::.    It3L            "
-echo " ;:[     L:::::::::::L    |t::!::J     |::::::::    :Et3            "
-echo " [:L    !::::::::::::L    |t::;z2F    .Et:::.:::.  ::[13            "
-echo " E:.    !::::::::::::L               =Et::::::::!  ::|13            "
-echo " E:.    (::::::::::::L    .......       \:::::::!  ::|i3            "
-echo " [:L    !::::      ::L    |3t::::!3.     ]::::::.  ::[13            "
-echo " !:(     .:::::    ::L    |t::::::3L     |:::::; ::::EE3            "
-echo "  E3.    :::::::::;z5.    Jz;;;z=F.     :E:::::.::::II3[            "
-echo "  Jt1.    :::::::[                    ;z5::::;.::::;3t3             "
-echo "   \z1.::::::::::l......   ..   ;.=ct5::::::/.::::;Et3L             "
-echo "    \t3.:::::::::::::::J  :E3.  Et::::::::;!:::::;5E3L              "
-echo "     'cz\.:::::::::::::J   E3.  E:::::::z!     ;Zz37'               "
-echo "       \z3.       ::;:::::::::::::::;=       ./355F                 "
-echo "         \z3x.         ::~=======          ,c253F                   "
-echo "           'tz3=.                      ..c5t32^                     "
-echo "              '=zz3==...         ...=t3z13P^                        "
-echo "                  '*=zjzczIIII3zzztE3>*^'                           "
-echo " You have tossed a coin. And it has landed on.... "
-if [ $NUMBER -eq 1 ]
-then
-     echo "Heads"
-else 
-     echo "Tails"
-fi
-}
-
-#==============
-#user selection
-#==============
-
-select weapon in \
-	"D-4" \
-	"D-6" \
-	"D-8" \
-	"D-10" \
-	"D-12" \
-	"D-20" \
-	"D-100" \
-	"coin toss" \
-
-#==============================================
-#Functions to perform based on user's selection
-#==============================================
-
-do 
-clear
-case $weapon in
-	"D-4")
-	D-4;
-	;;
-	"D-6")
-	D-6;
-	;;
-	"D-8")
-	D-8;
-	;;
-	"D-10")
-	D-10;
-	;;
-	"D-12")
-	D-12;
-	;;
-	"D-20")
-	D-20;
-	;;
-	"D-100")
-	D-100;
-	;;
-	"coin toss")
-	coin-toss;
-	;;
-	*)
-	esac
+            echo "You have tossed a coin. And it has landed on...."
+            [ $NUMBER -eq 1 ] && echo "Heads" || echo "Tails"
+            ;;
+        *)
+    esac
 done

@@ -57,6 +57,14 @@ art_for D-8 <<'EOF'
 EOF
 
 art_for D-10 <<'EOF'
+      ,'.
+    ,' | `.
+  ,'   |   `.
+,'_____|_____`.
+\      ^      /
+ \    / \    /
+  \  /   \  /
+   \/_____\/this is the worst D10 ever.
 EOF
 
 art_for D-12 <<'EOF'
@@ -122,7 +130,7 @@ Feel like donating? 14ZcmYJCZKsUFDYfHdU7YEaAwkatLdBvVC
     |       /_     '-.__)       |
     |        |-  _.' \ |        |
     ;        `~~;     \\        ;
-     ;  INBOBWE /      \\)P    ;
+     ;IN"BOB"WE /      \\)P    ;
       \  TRUST '.___.-'`"     /
        `\                   /`
          '._   1 9 9 8   _.'

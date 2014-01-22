@@ -147,7 +147,7 @@ Feel like donating? 14ZcmYJCZKsUFDYfHdU7YEaAwkatLdBvVC
        `\                   /`
          '._   1 9 9 8   _.'
             `'-..,,,..-'`
-
+EOF
 
 #================
 # Logic

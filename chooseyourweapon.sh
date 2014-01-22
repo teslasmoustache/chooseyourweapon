@@ -57,14 +57,6 @@ art_for D-8 <<'EOF'
 EOF
 
 art_for D-10 <<'EOF'
-      ,'.
-    ,' | `.
-  ,'   |   `.
-,'_____|_____`.
-\      ^      /
- \    / \    /
-  \  /   \  /
-   \/_____\/-this is the worst D10 ever.
 EOF
 
 art_for D-12 <<'EOF'
@@ -98,6 +90,24 @@ art_for D-20 <<'EOF'
 EOF
 
 art_for D-100 <<'EOF'
+
+You know a D100 is basically just a sphere. Quit complaining. I can feel you complaining.
+        .d$#T!!!~"#*b.
+      d$MM!!!!~~~     "h
+    dRMMM!!!~           ^k
+   $RMM!!~                ?
+  $MMM!~                   "
+ $MM!!                      9
+4RM!!                        F
+$!!!                         J
+9!!~                         F
+'k~~                        :
+ 3>                         F
+  9>                       F
+   "i                    :"
+     t.                .P
+       #c.          .z#
+          ^#*heee*#"
 EOF
 
 art_for coin toss <<'EOF'

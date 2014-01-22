@@ -57,6 +57,14 @@ art_for D-8 <<'EOF'
 EOF
 
 art_for D-10 <<'EOF'
+      ,'.
+    ,' | `.
+  ,'   |   `.
+,'_____|_____`.
+\      ^      /
+ \    / \    /
+  \  /   \  /
+   \/_____\/-this is the worst D10 ever.
 EOF
 
 art_for D-12 <<'EOF'

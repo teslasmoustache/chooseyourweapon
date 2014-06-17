@@ -138,7 +138,6 @@ EOF
 
 
 art_for coin toss <<'EOF'
-Feel like donating? 14ZcmYJCZKsUFDYfHdU7YEaAwkatLdBvVC
 
             _.-'~~`~~'-._
          .'`  L   A   C  `'.
